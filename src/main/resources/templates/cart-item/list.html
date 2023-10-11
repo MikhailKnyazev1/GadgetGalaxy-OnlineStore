@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head">
+  <!-- Header Fragment -->
+  <meta charset="UTF-8">
+  <title>Список товаров в корзине</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: nav">
+  <!-- Navbar Fragment -->
+</nav>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Список товаров в корзине</h1>
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>Товар</th>
+      <th>Количество</th>
+      <th>Цена</th>
+      <th>Итого</th>
+      <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cartItem : ${cartItems}">
+      <td th:text="${cartItem.product.name}"></td>
+      <td th:text="${cartItem.quantity}"></td>
+      <td th:text="${cartItem.product.price}"></td>
+      <td th:text="${cartItem.product.price * cartItem.quantity}"></td>
+      <td>
+        <form th:action="@{/cart/remove/{id}(id=${cartItem.id})}" method="post">
+          <button type="submit" class="btn btn-danger btn-block">Удалить</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between mt-4">
+    <p>Общая сумма: <span th:text="${totalCartValue}"></span></p>
+    <div>
+      <form th:action="@{/cart/clear}" method="post" class="d-inline-block mr-2">
+        <button type="submit" class="btn btn-warning">Очистить корзину</button>
+      </form>
+
+      <form th:action="@{/cart/checkout}" method="post" class="d-inline-block">
+        <button type="submit" class="btn btn-success">Оформить заказ</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer">
+  <!-- Footer Fragment -->
+</footer>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

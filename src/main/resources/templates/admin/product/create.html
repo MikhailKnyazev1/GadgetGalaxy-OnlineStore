@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head">
+  <!-- Header Fragment -->
+</head>
+<body>
+
+<nav th:replace="fragments/navbar :: nav">
+  <!-- Navbar Fragment -->
+</nav>
+
+<div class="container mt-5">
+  <h1>Добавить новый товар</h1>
+
+  <form th:action="@{/product/admin/create}" method="post">
+    <div class="mb-3">
+      <label for="productName" class="form-label">Название</label>
+      <input type="text" class="form-control" id="productName" name="name" required>
+    </div>
+    <div class="mb-3">
+      <label for="productDescription" class="form-label">Описание</label>
+      <textarea class="form-control" id="productDescription" name="description" rows="3" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="productImageUrl" class="form-label">URL изображения</label>
+      <input type="text" class="form-control" id="productImageUrl" name="imageUrl" required>
+    </div>
+    <div class="mb-3">
+      <label for="productPrice" class="form-label">Цена</label>
+      <input type="number" step="0.01" class="form-control" id="productPrice" name="price" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Создать</button>
+  </form>
+</div>
+
+<footer th:replace="fragments/footer :: footer">
+  <!-- Footer Fragment -->
+</footer>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

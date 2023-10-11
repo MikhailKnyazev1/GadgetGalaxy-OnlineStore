@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head}">
+  <!-- Фрагмент заголовка -->
+  <meta charset="UTF-8">
+  <title>Список заказов</title>
+</head>
+<body>
+<nav th:replace="~{fragments/navbar :: nav}">
+  <!-- Фрагмент навигационной панели -->
+</nav>
+
+<div class="container mt-5">
+  <h1>Заказы</h1>
+  <table class="table table-bordered table-striped"> <!-- добавлен класс Bootstrap для стилизации -->
+    <thead>
+    <tr>
+      <th>ID заказа</th>
+      <th>Дата заказа</th>
+      <th>Детали</th>
+      <th>Действие</th> <!-- Заголовок для действий -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+      <td th:text="${order.id}"></td>
+      <td th:text="${order.orderDate.format(formatter)}"></td>
+      <td><a th:href="@{/admin/orders/{id}(id=${order.id})}">Просмотр</a></td>
+      <td>
+        <!-- Ссылка для удаления -->
+        <a th:href="@{/admin/orders/delete/{id}(id=${order.id})}" class="btn btn-danger">Удалить</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}">
+  <!-- Фрагмент подвала -->
+</footer>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

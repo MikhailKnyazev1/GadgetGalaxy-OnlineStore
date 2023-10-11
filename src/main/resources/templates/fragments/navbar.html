@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Navbar</title>
+</head>
+<body>
+<nav th:fragment="navbar-fragment" class="navbar navbar-expand-lg navbar-light bg-info">
+  <a class="navbar-brand" th:href="@{/}">Gadget Galaxy</a>
+  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/}">Главная</a>
+      </li>
+      <li class="nav-item" th:if="${isAdmin}">
+        <a class="nav-link" th:href="@{/users}">Пользователи</a>
+      </li>
+      <li class="nav-item" th:if="${isAdmin}">
+        <a class="nav-link" th:href="@{/admin/orders}">Заказы</a>
+      </li>
+      <li class="nav-item" th:if="${isAdmin}">
+        <a class="nav-link" th:href="@{/product/admin/create}">Товары</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav d-flex align-items-center">
+      <li class="nav-item" th:if="${currentUser == null}">
+        <a class="nav-link" th:href="@{/login}">Вход</a>
+      </li>
+      <li class="nav-item" th:if="${currentUser != null}">
+        <span th:text="${currentUser.username} + ' (' + ${currentUser.role} + ')'"></span>
+      </li>
+      <li class="nav-item" th:if="${currentUser != null}">
+        <!-- Используем форму для выхода -->
+        <form th:action="@{/logout}" method="post" style="display: inline;">
+          <button type="submit" class="btn btn-link nav-link" style="display: inline; padding: 0;">Выход</button>
+        </form>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/cart}">Корзина</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</body>
+</html>

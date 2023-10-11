@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Product List</title>
+  <th:block th:replace="fragments/header :: common-head-content"></th:block>
+</head>
+<body>
+
+<!-- Вставка фрагмента навигационной панели -->
+<th:block th:replace="fragments/navbar :: navbar-fragment"></th:block>
+
+<h1>Товары</h1>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="product : ${products}">
+    <td th:text="${product.id}"></td>
+    <td th:text="${product.name}"></td>
+    <td th:text="${product.price}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- добавление фрагмента footer -->
+<th:block th:replace="fragments/footer :: footer-fragment"></th:block>
+
+</body>
+</html>

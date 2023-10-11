@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head}">
+  <!-- Фрагмент заголовка -->
+  <meta charset="UTF-8">
+  <title>Редактирование заказа</title>
+</head>
+<body>
+<nav th:replace="~{fragments/navbar :: nav}">
+  <!-- Фрагмент навигационной панели -->
+</nav>
+
+<div class="container mt-5">
+  <h1>Редактирование заказа</h1>
+  <form th:action="@{/admin/orders/edit/{id}(id=${order.id})}" th:object="${order}" method="post" class="form-group">
+
+    <!-- Поле пользователя -->
+    <div class="mb-3">
+      <label for="user" class="form-label">Пользователь:</label>
+      <select th:field="*{user}" id="user" class="form-control" required>
+        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+      </select>
+    </div>
+
+    <!-- Поле общей стоимости -->
+    <div class="mb-3">
+      <label for="totalPrice" class="form-label">Общая стоимость:</label>
+      <input type="text" th:field="*{totalPrice}" id="totalPrice" class="form-control" required>
+    </div>
+
+    <!-- Поле даты заказа -->
+    <div class="mb-3">
+      <label for="orderDate" class="form-label">Дата заказа:</label>
+      <input type="date" th:field="*{orderDate}" id="orderDate" class="form-control" required>
+    </div>
+
+    <!-- Поле статуса заказа -->
+    <div class="mb-3">
+      <label for="orderStatus" class="form-label">Статус заказа:</label>
+      <input type="text" th:field="*{orderStatus}" id="orderStatus" class="form-control" required>
+    </div>
+
+    <input type="submit" value="Обновить заказ" class="btn btn-primary">
+  </form>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}">
+  <!-- Фрагмент подвала -->
+</footer>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

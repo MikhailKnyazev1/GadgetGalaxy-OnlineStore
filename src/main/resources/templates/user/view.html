@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head">
+  <!-- Фрагмент заголовка -->
+  <meta charset="UTF-8">
+  <title>Просмотр пользователя</title>
+</head>
+<body>
+
+<nav th:replace="fragments/navbar :: nav">
+  <!-- Фрагмент навигационной панели -->
+</nav>
+
+<div class="container mt-5">
+  <h1>Детали пользователя</h1>
+  <p><strong>ID:</strong> <span th:text="${user.id}"></span></p>
+  <p><strong>Имя пользователя:</strong> <span th:text="${user.username}"></span></p>
+  <!-- Дополнительные поля -->
+  <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+  <!-- ... добавьте другие поля по аналогии -->
+</div>
+
+<div class="container mt-4">
+  <a class="btn btn-primary" th:href="@{/users}">Пользователи</a>
+</div>
+
+<footer th:replace="fragments/footer :: footer">
+  <!-- Фрагмент подвала -->
+</footer>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

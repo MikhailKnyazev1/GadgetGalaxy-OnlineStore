@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать пользователя</title>
+    <!-- Включите ваш фрагмент заголовка здесь -->
+    <th:block th:replace="fragments/header :: head"></th:block>
+</head>
+<body>
+
+<nav>
+    <!-- Включите ваш фрагмент навигационной панели здесь -->
+    <th:block th:replace="fragments/navbar :: nav"></th:block>
+</nav>
+
+<div class="container mt-5">
+    <h2>Редактировать пользователя</h2>
+
+    <form th:action="@{'/users/' + ${user.id}}" th:object="${user}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" th:field="*{username}" class="form-control" id="username" required />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Электронная почта:</label>
+            <input type="email" th:field="*{email}" class="form-control" id="email" required />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Пароль (оставьте пустым, чтобы сохранить без изменений):</label>
+            <input type="password" th:field="*{password}" class="form-control" id="password" />
+        </div>
+
+        <!-- Добавьте другие поля, если у вас есть -->
+
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+    </form>
+</div>
+
+<footer>
+    <!-- Включите ваш фрагмент подвала здесь -->
+    <th:block th:replace="fragments/footer :: footer"></th:block>
+</footer>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
