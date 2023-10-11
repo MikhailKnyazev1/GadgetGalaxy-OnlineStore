@@ -6,13 +6,13 @@ GadgetGalaxy is an e-commerce web application developed as part of a diploma pro
 ## Screenshots
 
 ### Main Interface
-![Main Interface](images/main.png)
+![Main Interface](images/main1.png)
 
 ### Registration
-![Registration](images/register.png)
+![Registration](images/register1.png)
 
 ### Cart
-![Cart](images/cart.png)
+![Cart](images/cart1.png)
 
 ## Key Features
 - User registration and authentication
